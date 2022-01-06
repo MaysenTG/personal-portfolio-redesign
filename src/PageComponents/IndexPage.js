@@ -2,6 +2,7 @@ import portrait from "../media/self-portrait.webp";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { React, Component } from "react";
 import "../styling/bootstrap.min.css";
+import parse from "html-react-parser";
 
 import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
@@ -10,28 +11,47 @@ class IndexPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      homePageSkills: {
-        webDesign: {
-          description: "",
-        },
-        interfaceDesign: {
-          description: "",
-        },
-        dbIntegration: {
-          description: "",
-        },
-      },
+      allData: null,
+      
       loading: true,
+      
+      homePageIntro: {
+        description: "",
+      },
+      homePageSkills: {
+        skill_1: {
+          name: "",
+          description: ""
+        },
+        skill_2: {
+          name: "",
+          description: ""
+        },
+        skill_3: {
+          name: "",
+          description: ""
+        }
+      },
+      homePageButton: {
+        label: ""
+      }
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const db = getDatabase();
-    const starCountRef = ref(db, "homepageSkills");
+    const starCountRef = ref(db, "homepageData/0");
 
-    onValue(starCountRef, (snapshot) => {
+    await onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
-      this.setState({ homePageSkills: data });
+      this.setState({ allData: data });
+      this.setState({ homePageSkills: data["homepageSkills"] });
+      this.setState({
+        homePageIntro: data["homepageOther"]["homepageIntro"],
+      });
+      this.setState({
+        homePageButton: data["homepageOther"]["homepageProjectsButton"],
+      });
     });
 
     setTimeout(() => {
@@ -53,14 +73,16 @@ class IndexPage extends Component {
                   <i className="icon ion-ios-star-outline"></i>
                 </div>
                 <div className="card-body">
-                  <h3 className="card-title">Web Design</h3>
+                  <h3 className="card-title">
+                    {this.state.homePageSkills.skill_1["name"]}
+                  </h3>
                   {this.state.loading ? (
                     <p className="card-text">
                       <CircularProgress />
                     </p>
                   ) : (
                     <p className="card-text">
-                      {this.state.homePageSkills.webDesign["description"]}
+                      {this.state.homePageSkills.skill_1["description"]}
                     </p>
                   )}
                 </div>
@@ -72,7 +94,9 @@ class IndexPage extends Component {
                   <i className="icon ion-ios-lightbulb-outline"></i>
                 </div>
                 <div className="card-body">
-                  <h3 className="card-title">Interface Design</h3>
+                  <h3 className="card-title">
+                    {this.state.homePageSkills.skill_2["name"]}
+                  </h3>
                   <p className="card-text">
                     {this.state.loading ? (
                       <p className="card-text">
@@ -80,7 +104,7 @@ class IndexPage extends Component {
                       </p>
                     ) : (
                       <p className="card-text">
-                        {this.state.homePageSkills.interfaceDesign["description"]}
+                        {this.state.homePageSkills.skill_2["description"]}
                       </p>
                     )}
                   </p>
@@ -93,7 +117,9 @@ class IndexPage extends Component {
                   <i className="icon ion-ios-gear-outline"></i>
                 </div>
                 <div className="card-body">
-                  <h3 className="card-title">Database integration</h3>
+                  <h3 className="card-title">
+                    {this.state.homePageSkills.skill_3["name"]}
+                  </h3>
                   <p className="card-text">
                     {this.state.loading ? (
                       <p className="card-text">
@@ -101,7 +127,7 @@ class IndexPage extends Component {
                       </p>
                     ) : (
                       <p className="card-text">
-                        {this.state.homePageSkills.dbIntegration["description"]}
+                        {this.state.homePageSkills.skill_3["description"]}
                       </p>
                     )}
                   </p>
@@ -115,34 +141,38 @@ class IndexPage extends Component {
   }
 
   render() {
-    return (
-      <main className="page landing-page">
-        <section className="portfolio-block block-intro">
-          <div
-            className="avatar"
-            style={{ backgroundImage: `url(${portrait})` }}
-          ></div>
-          <div className="container">
-            <div className="about-me">
-              <p>
-                Hi! I'm&nbsp;<strong>Maysen </strong>and<strong>&nbsp;</strong>I
-                <strong>&nbsp;</strong>work as a front end developer. I have a
-                passion for minimal and easy to use interfaces.
-              </p>
-              <Link
-                className="btn btn-outline-primary"
-                id="main-projects-btn"
-                to="/my-projects"
-              >
-                My Projects
-              </Link>
+    if (this.state.loading) {
+      return (
+        <div className="loading-container">
+          <CircularProgress />
+        </div>
+      );
+    } else {
+      return (
+        <main className="page landing-page">
+          <section className="portfolio-block block-intro">
+            <div
+              className="avatar"
+              style={{ backgroundImage: `url(${portrait})` }}
+            ></div>
+            <div className="container">
+              <div className="about-me">
+                <p>{parse(this.state.homePageIntro.description)}</p>
+                <Link
+                  className="btn btn-outline-primary"
+                  id="main-projects-btn"
+                  to="/my-projects"
+                >
+                  {this.state.homePageButton.label}
+                </Link>
+              </div>
             </div>
-          </div>
-        </section>
-        
-        {this.createPage()}
-      </main>
-    );
+          </section>
+
+          {this.createPage()}
+        </main>
+      );
+    }
   }
 }
 

@@ -22,9 +22,10 @@
 }
 
 .loading-container {
-  width: 80%;
+  width: 100%;
   margin: 10rem auto;
-  
+  display: flex;
+  justify-content: center;
 }
 
 .loading-container h1 {

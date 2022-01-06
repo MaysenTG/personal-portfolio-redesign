@@ -1,6 +1,6 @@
-import { React, Component, lazy, Suspense } from "react";
+import { React, Component } from "react";
 import "../styling/index.css";
-import { CircularProgress, LinearProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import parse from "html-react-parser";
 import { getDatabase, ref, onValue } from "firebase/database";
 
@@ -165,7 +165,7 @@ class MaysenCV extends Component {
       return (
         <div className="loading-container">
           <h1>Loading CV</h1>
-          <LinearProgress />
+          <CircularProgress />
         </div>
       );
     } else {
