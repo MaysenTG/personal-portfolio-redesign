@@ -139,7 +139,7 @@ class IndexPage extends Component {
             </div>
           </div>
         </section>
-
+        
         {this.createPage()}
       </main>
     );

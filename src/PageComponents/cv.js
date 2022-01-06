@@ -1,6 +1,6 @@
-import { React, Component } from "react";
+import { React, Component, lazy, Suspense } from "react";
 import "../styling/index.css";
-import { LinearProgress } from "@mui/material";
+import { CircularProgress, LinearProgress } from "@mui/material";
 import parse from "html-react-parser";
 import { getDatabase, ref, onValue } from "firebase/database";
 
@@ -44,7 +44,6 @@ class MaysenCV extends Component {
                 <h2 className="text-center">Work Experience</h2>
               </div>
 
-              {/* Loops through JSON of jobs and maps them to the HTML containers */}
               {this.state.work_json
                 .sort(function (a, b) {
                   return b.id - a.id;
