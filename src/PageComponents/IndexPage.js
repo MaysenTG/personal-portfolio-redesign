@@ -95,7 +95,6 @@ class IndexPage extends Component {
                   <h3 className="card-title">
                     {this.state.homePageSkills.skill_2["name"]}
                   </h3>
-                  <p className="card-text">
                     {this.state.loading ? (
                       <p className="card-text">
                         <CircularProgress />
@@ -105,7 +104,6 @@ class IndexPage extends Component {
                         {this.state.homePageSkills.skill_2["description"]}
                       </p>
                     )}
-                  </p>
                 </div>
               </div>
             </div>
@@ -118,7 +116,6 @@ class IndexPage extends Component {
                   <h3 className="card-title">
                     {this.state.homePageSkills.skill_3["name"]}
                   </h3>
-                  <p className="card-text">
                     {this.state.loading ? (
                       <p className="card-text">
                         <CircularProgress />
@@ -128,7 +125,6 @@ class IndexPage extends Component {
                         {this.state.homePageSkills.skill_3["description"]}
                       </p>
                     )}
-                  </p>
                 </div>
               </div>
             </div>

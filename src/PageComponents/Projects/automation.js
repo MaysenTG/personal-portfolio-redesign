@@ -1,6 +1,6 @@
 import '../../styling/index.css';
 import { Component } from "react";
-import { LinearProgress, CircularProgress } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 
 import { projectFirestore } from "../../firebase/config";
 import { onSnapshot, collection, query, getDocs } from "firebase/firestore";
