@@ -40,6 +40,10 @@
   margin-bottom: -2rem !important;
 }
 
+.location {
+  font-size: 0.8em;
+}
+
 
 /* Projects Page Styles */
 .projects__container {

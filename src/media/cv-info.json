@@ -1,0 +1,91 @@
+{
+  "work": [
+    {
+      "id": 1,
+      "company": "Crowded House Sports Bar",
+      "position": "Bar staff",
+      "tenure": "12/2018 - 02/2019",
+      "location": "Taranaki, New Zealand",
+      "description": "My roles included being a sole server of a busy bar and restaurant during busy dinner shifts, delivering food and drinks to tables, and reporting and misbehaviour to managers."
+    },
+    {
+      "id": 2,
+      "company": "Terrace Tavern",
+      "position": "Bar staff/Front of House",
+      "tenure": "08/2019 - 11/2019",
+      "location": "Christchurch, New Zealand",
+      "description": "I worked as a bar person / waiter at a busy restaurant and nightclub in Christchurch. My main responsibilities included taking care of large sections of the restaurant (20-30 people) and ensuring their meals and drinks were ordered and delivered in appropriate timing while also being aware of how my co workers were doing in other sections."
+    },
+    {
+      "id": 3,
+      "company": "BBC Technologies",
+      "position": "Production Assistant",
+      "tenure": "12/2020 - 08/2020",
+      "location": "Hamilton, New Zealand",
+      "description": "I worked as a production assistant prepping metal and assembling machinery for their high tech fruit processing/packaging machines. I then moved from prepping the metal pieces to assembling within 5 weeks as I showed a high level of competency in that area."
+    },
+    {
+      "id": 4,
+      "company": "Tradestaff",
+      "position": "General Labourer",
+      "tenure": "12/2020 - 03/2021",
+      "location": "Hamilton, New Zealand",
+      "description": "I worked a variety of roles while employed with Tradestaff. I did various roles such as scaffolding, general labour work, flooring/fencing and for my final long term role, I worked at a truck dealership in Hamilton where my 2 primary roles were ensuring the grounds were kept tidy, and helped the delivery/pickup of trucks to customers"
+    },
+    {
+      "id": 5,
+      "company": "Daydream Espresso",
+      "position": "Barista",
+      "tenure": "03/2021 - 08/2021",
+      "location": "Cambridge, New Zealand",
+      "description": "I worked in a busy local cafe where I worked many roles - including kitchen work (prepping toasties/meals, cleaning dishes), serving customers, and making tasty coffee."
+    }
+  ],
+
+  "education": [
+    {
+      "id": 1,
+      "type": "Bachelors of Science - Computer Science",
+      "insitution": "Massey University",
+      "timeframe": "02/2020 - present",
+      "description": "Distance uni"
+    },
+    {
+      "id": 1,
+      "type": "Bachelors of Science",
+      "insitution": "Canterbury University",
+      "timeframe": "02/2019 - 02/2020",
+      "description": "During my time at university, I was studying and working towards my Computer Science degree at Canterbury University, in Christchurch."
+    },
+    {
+      "id": 2,
+      "type": "High School",
+      "insitution": "St Peters Cambridge",
+      "timeframe": "01/2016 - 11/2018",
+      "description": "High School education. I studied the IB Diploma program here where I focused on higher subjects of Chemistry, Physics and Economics. I also studied English and Maths and Theory of Knowledge (TOK)."
+    }
+  ],
+  "skills": [
+    {
+      "language": "Javascript",
+      "widthPercentage": 90
+    },
+    {
+      "language": "Shopify Liquid",
+      "widthPercentage": 80
+    },
+    {
+      "language": "HTML",
+      "widthPercentage": 90
+    },
+    {
+      "language": "CSS",
+      "widthPercentage": 70
+    }
+  ],
+  "hobbies": [
+    {
+      "description": "I am an enthusiastic individual with a strong interest in programming. I enjoy the challenge programming brings me! I also enjoy playing guitar and the alto saxophone. I have a small dog who loves going for walks, so taking him for fun adventures is a highlight of my day."
+    }
+  ]
+}

@@ -25,7 +25,7 @@ class MyAppProjects extends Component {
     });
 
     this.createHTML();
-
+    
     this.setState({ loading: false });
   };
 

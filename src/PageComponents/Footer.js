@@ -27,6 +27,9 @@ function Footer() {
             <a href="https://github.com/MaysenTG" target="_blank" rel="noreferrer">
               <i className="icon ion-social-github"></i>
             </a>
+            <a href="https://www.linkedin.com/in/maysen-greenwood/" target="_blank" rel="noreferrer">
+              <i className="icon ion-social-linkedin"></i>
+            </a>
           </div>
         </div>
       </footer>
