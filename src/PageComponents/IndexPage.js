@@ -38,11 +38,11 @@ class IndexPage extends Component {
     };
   }
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     const db = getDatabase();
     const starCountRef = ref(db, "homepageData/0");
 
-    await onValue(starCountRef, (snapshot) => {
+    onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       this.setState({ allData: data });
       this.setState({ homePageSkills: data["homepageSkills"] });
@@ -52,11 +52,9 @@ class IndexPage extends Component {
       this.setState({
         homePageButton: data["homepageOther"]["homepageProjectsButton"],
       });
-    });
-
-    setTimeout(() => {
+      
       this.setState({ loading: false });
-    }, 1000);
+    });
   };
 
   createPage() {
@@ -144,7 +142,8 @@ class IndexPage extends Component {
     if (this.state.loading) {
       return (
         <div className="loading-container">
-          <CircularProgress />
+          <h1>Loading</h1>
+          <span className="loading-item"><CircularProgress /></span>
         </div>
       );
     } else {

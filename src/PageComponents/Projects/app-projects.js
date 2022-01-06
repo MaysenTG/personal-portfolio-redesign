@@ -1,6 +1,6 @@
 import { React, Component } from "react";
 
-import { LinearProgress } from "@mui/material";
+import { LinearProgress, CircularProgress } from "@mui/material";
 
 import { projectFirestore } from "../../firebase/config";
 import { onSnapshot, collection, query, getDocs } from "firebase/firestore";
@@ -82,7 +82,7 @@ class MyAppProjects extends Component {
       return (
         <div className="loading-container">
           <h1>Loading projects</h1>
-          <LinearProgress />
+          <span className="loading-item"><CircularProgress /></span>
         </div>
       );
     } else {
