@@ -72,7 +72,7 @@ class MaysenCV extends Component {
               </div>
 
               {this.state.education_json.map((edu) => (
-                <div className="item" key={edu.id}>
+                <div className="item" key={`${edu.id}-edu`}>
                   <div className="row">
                     <div className="col-md-6">
                       <h3>{edu.type}</h3>
@@ -93,7 +93,7 @@ class MaysenCV extends Component {
                   <div className="skills portfolio-info-card">
                     <h2>Skills</h2>
                     {this.state.skills_json.map((skill) => (
-                      <div key={skill.id}>
+                      <div key={`${skill.id}-skill`}>
                         <h3>{skill.language}</h3>
                         <div className="progress">
                           <div
@@ -146,7 +146,7 @@ class MaysenCV extends Component {
             </div>
 
             {this.state.hobbies_json.map((item) => (
-              <div className="hobbies group">
+              <div className="hobbies group" key={`${item.id}-hobbies`}>
                 <div className="heading">
                   <h2 className="text-center">Hobbies</h2>
                 </div>
