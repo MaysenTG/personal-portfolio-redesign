@@ -76,7 +76,11 @@ class MaysenCV extends Component {
                     <div className="row">
                       <div className="col-6">
                         <h3>{job.position}</h3>
+                        {this.state.cv_settings.jobBubbleColour !== "" ? (
+                        <h4 className="organization" style={{"backgroundColor": this.state.cv_settings.jobBubbleColour}}>{job.company}</h4>
+                      ) : (
                         <h4 className="organization">{job.company}</h4>
+                      )}
                         <p className="text-muted location">{job.location}</p>
                       </div>
                       <div className="col-md-6">
@@ -98,7 +102,11 @@ class MaysenCV extends Component {
                   <div className="row">
                     <div className="col-md-6">
                       <h3>{edu.type}</h3>
-                      <h4 className="organization">{edu.insitution}</h4>
+                      {this.state.cv_settings.eduBubbleColour !== "" ? (
+                        <h4 className="organization" style={{"backgroundColor": this.state.cv_settings.eduBubbleColour}}>{edu.insitution}</h4>
+                      ) : (
+                        <h4 className="organization">{edu.insitution}</h4>
+                      )}
                     </div>
                     <div className="col-6">
                       <span className="period">{edu.timeframe}</span>

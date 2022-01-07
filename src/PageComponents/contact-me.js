@@ -70,9 +70,9 @@ function ContactMe() {
           <div className="heading">
             <h2>Get in touch with me</h2>
           </div>
-          <form validated={validated} onSubmit={handleSubmit} id="contact-form">
+          <form validated={validated.toString()} onSubmit={handleSubmit} id="contact-form">
             <div className="mb-3">
-              <label className="form-label" for="fname">
+              <label className="form-label" htmlFor="fname">
                 Name
               </label>
               <input
@@ -85,7 +85,7 @@ function ContactMe() {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label" for="email">
+              <label className="form-label" htmlFor="email">
                 Email
               </label>
               <input
@@ -98,7 +98,7 @@ function ContactMe() {
               />
             </div>
             <div className="mb-3">
-              <label className="form-label" for="message">
+              <label className="form-label" htmlFor="message">
                 Message
               </label>
               <textarea

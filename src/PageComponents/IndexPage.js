@@ -12,9 +12,7 @@ class IndexPage extends Component {
     super(props);
     this.state = {
       allData: null,
-      
       loading: true,
-      
       homePageIntro: {
         description: "",
       },
