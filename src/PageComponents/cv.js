@@ -2,7 +2,7 @@ import { React, Component } from "react";
 import "../styling/index.css";
 import { CircularProgress } from "@mui/material";
 import parse from "html-react-parser";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 
 class MaysenCV extends Component {
   constructor(props) {
@@ -77,10 +77,18 @@ class MaysenCV extends Component {
                       <div className="col-6">
                         <h3>{job.position}</h3>
                         {this.state.cv_settings.jobBubbleColour !== "" ? (
-                        <h4 className="organization" style={{"backgroundColor": this.state.cv_settings.jobBubbleColour}}>{job.company}</h4>
-                      ) : (
-                        <h4 className="organization">{job.company}</h4>
-                      )}
+                          <h4
+                            className="organization"
+                            style={{
+                              backgroundColor:
+                                this.state.cv_settings.jobBubbleColour,
+                            }}
+                          >
+                            {job.company}
+                          </h4>
+                        ) : (
+                          <h4 className="organization">{job.company}</h4>
+                        )}
                         <p className="text-muted location">{job.location}</p>
                       </div>
                       <div className="col-md-6">
@@ -103,7 +111,15 @@ class MaysenCV extends Component {
                     <div className="col-md-6">
                       <h3>{edu.type}</h3>
                       {this.state.cv_settings.eduBubbleColour !== "" ? (
-                        <h4 className="organization" style={{"backgroundColor": this.state.cv_settings.eduBubbleColour}}>{edu.insitution}</h4>
+                        <h4
+                          className="organization"
+                          style={{
+                            backgroundColor:
+                              this.state.cv_settings.eduBubbleColour,
+                          }}
+                        >
+                          {edu.insitution}
+                        </h4>
                       ) : (
                         <h4 className="organization">{edu.insitution}</h4>
                       )}
