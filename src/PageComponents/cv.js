@@ -24,7 +24,7 @@ class MaysenCV extends Component {
         "settings/cvPage",
       ],
       loading: true,
-      cv_settings: { showHobbies: null, showWidth: null },
+      cv_settings: {},
     };
   }
 
@@ -47,7 +47,7 @@ class MaysenCV extends Component {
 
       await onValue(starCountRef, (snapshot) => {
         const data = snapshot.val();
-        if (jsonItem === "settings/cvPage") {
+        if (jsonItem === "settings/cvPage" || jsonItem === "hobbies") {
           this.setState({ [stateName]: data });
         } else {
           this.setState({ [stateName]: data.map((item) => item) });
@@ -217,16 +217,14 @@ class MaysenCV extends Component {
             </div>
             {this.state.cv_settings.showHobbies ? (
               <>
-                {this.state.hobbies_json.map((item) => (
-                  <div className="hobbies group" key={`${item.id}-hobbies`}>
+                  <div className="hobbies group" key={`1-hobbies`}>
                     <div className="heading">
                       <h2 className="text-center">Hobbies</h2>
                     </div>
                     <p className="text-center text-muted">
-                      {parse(item.description)}
+                      {parse(this.state.hobbies_json.description)}
                     </p>
                   </div>
-                ))}
               </>
             ) : (
               <></>
