@@ -38,17 +38,17 @@ class IndexPage extends Component {
 
   componentDidMount = () => {
     const db = getDatabase();
-    const starCountRef = ref(db, "homepageData/0");
+    const starCountRef = ref(db, "homepageData");
 
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       this.setState({ allData: data });
-      this.setState({ homePageSkills: data["homepageSkills"] });
+      this.setState({ homePageSkills: data.homepageSkills });
       this.setState({
-        homePageIntro: data["homepageOther"]["homepageIntro"],
+        homePageIntro: data.homepageOther.homepageIntro
       });
       this.setState({
-        homePageButton: data["homepageOther"]["homepageProjectsButton"],
+        homePageButton: data.homepageOther.homepageProjectsButton,
       });
       
       this.setState({ loading: false });

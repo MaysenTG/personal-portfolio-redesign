@@ -2,7 +2,7 @@ import { React, Component } from "react";
 import "../styling/index.css";
 import { CircularProgress } from "@mui/material";
 import parse from "html-react-parser";
-import { getDatabase, ref, onValue, set } from "firebase/database";
+import { getDatabase, ref, onValue } from "firebase/database";
 
 class MaysenCV extends Component {
   constructor(props) {
