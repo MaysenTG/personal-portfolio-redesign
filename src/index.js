@@ -23,7 +23,7 @@ const StyledLink = styled(Link)`
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <Router>
-    <nav className="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+    <nav className="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" aria-label="Main website navigation">
       <div className="container">
         <StyledLink className="navbar-brand logo" to="/">
           Maysen Greenwood
