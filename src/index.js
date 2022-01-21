@@ -6,6 +6,7 @@ import Footer from "./PageComponents/Footer";
 import MyProjects from "./PageComponents/my-projects";
 import ContactMe from "./PageComponents/contact-me";
 import MaysenCV from "./PageComponents/cv";
+import PrivacyPolicy from "./PageComponents/privacy-policy";
 
 import styled from "styled-components";
 import {
@@ -23,7 +24,10 @@ const StyledLink = styled(Link)`
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <Router>
-    <nav className="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient" aria-label="Main website navigation">
+    <nav
+      className="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient"
+      aria-label="Main website navigation"
+    >
       <div className="container">
         <StyledLink className="navbar-brand logo" to="/">
           Maysen Greenwood
@@ -79,6 +83,9 @@ ReactDOM.render(
       </Route>
       <Route path="/cv">
         <MaysenCV />
+      </Route>
+      <Route path="/privacy-policy">
+        <PrivacyPolicy />
       </Route>
       <Route
         path="/admin"
