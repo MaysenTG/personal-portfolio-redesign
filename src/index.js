@@ -8,6 +8,11 @@ import ContactMe from "./PageComponents/contact-me";
 import MaysenCV from "./PageComponents/cv";
 import PrivacyPolicy from "./PageComponents/privacy-policy";
 
+import { ApolloProvider } from "@apollo/react-hooks";
+import { ApolloClient } from "apollo-client";
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { createHttpLink } from "apollo-link-http";
+
 import styled from "styled-components";
 import {
   BrowserRouter as Router,
@@ -20,6 +25,16 @@ import {
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
+
+// GraphQL logic
+const link = createHttpLink({
+  uri: "http://localhost:3000/graphql",
+});
+
+const client = new ApolloClient({
+  link: link,
+  cache: new InMemoryCache(),
+});
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
@@ -71,34 +86,36 @@ ReactDOM.render(
       </div>
     </nav>
 
-    <Switch>
-      <Route exact path="/">
-        <IndexPage />
-      </Route>
-      <Route path="/my-projects">
-        <MyProjects />
-      </Route>
-      <Route path="/contact">
-        <ContactMe />
-      </Route>
-      <Route path="/cv">
-        <MaysenCV />
-      </Route>
-      <Route path="/privacy-policy">
-        <PrivacyPolicy />
-      </Route>
-      <Route
-        path="/admin"
-        component={() => {
-          window.location.href =
-            "https://maysentg.github.io/personal-portfolio-admin/";
-          return null;
-        }}
-      />
-      <Route path="*">
-        <Redirect from="*" to="/" />
-      </Route>
-    </Switch>
+    <ApolloProvider client={client}>
+      <Switch>
+        <Route exact path="/">
+          <IndexPage />
+        </Route>
+        <Route path="/my-projects">
+          <MyProjects />
+        </Route>
+        <Route path="/contact">
+          <ContactMe />
+        </Route>
+        <Route path="/cv">
+          <MaysenCV />
+        </Route>
+        <Route path="/privacy-policy">
+          <PrivacyPolicy />
+        </Route>
+        <Route
+          path="/admin"
+          component={() => {
+            window.location.href =
+              "https://maysentg.github.io/personal-portfolio-admin/";
+            return null;
+          }}
+        />
+        <Route path="*">
+          <Redirect from="*" to="/" />
+        </Route>
+      </Switch>
+    </ApolloProvider>
 
     <Footer />
   </Router>,

@@ -1,65 +1,67 @@
 import portrait from "../media/self-portrait.webp";
-import { getDatabase, ref, onValue } from "firebase/database";
-import { React, Component } from "react";
+
+import { React } from "react";
 import "../styling/bootstrap.min.css";
-import parse from "html-react-parser";
 
 import { Link } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 
-class IndexPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      allData: null,
-      loading: true,
-      homePageIntro: {
-        description: "",
-      },
-      homePageSkills: {
-        skill_1: {
-          name: "",
-          description: ""
-        },
-        skill_2: {
-          name: "",
-          description: ""
-        },
-        skill_3: {
-          name: "",
-          description: ""
-        }
-      },
-      homePageButton: {
-        label: ""
-      }
-    };
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+
+const GET_HOMEPAGE = gql`
+  {
+    homepages {
+      subtext
+      buttonLabel
+      skill1
+      skill1Title
+      skill2
+      skill2Title
+      skill3
+      skill3Title
+    }
   }
+`;
 
-  componentDidMount = () => {
-    const db = getDatabase();
-    const starCountRef = ref(db, "homepageData");
+function IndexPage() {
+  const { loading, error, data } = useQuery(GET_HOMEPAGE);
 
-    onValue(starCountRef, (snapshot) => {
-      const data = snapshot.val();
-      this.setState({ allData: data });
-      this.setState({ homePageSkills: data.homepageSkills });
-      this.setState({
-        homePageIntro: data.homepageOther.homepageIntro
-      });
-      this.setState({
-        homePageButton: data.homepageOther.homepageProjectsButton,
-      });
-      
-      this.setState({ loading: false });
-    });
-  };
-
-  createPage() {
+  if (error) return `Error ${error.message}`;
+  if (loading)
     return (
+      <div className="loading-container">
+        <h1>Loading</h1>
+        <span className="loading-item">
+          <CircularProgress />
+        </span>
+      </div>
+    );
+
+  return (
+    <main className="page landing-page">
+      <section style={{"margin-top": "-2rem"}} className="portfolio-block block-intro">
+        <div
+          className="avatar"
+          style={{ backgroundImage: `url(${portrait})` }}
+        ></div>
+        <div className="container">
+          <div className="about-me">
+            <p>{data.homepages[0].subtext}</p>
+            <Link
+              className="btn btn-outline-primary"
+              id="main-projects-btn"
+              to="/my-projects"
+            >
+              {data.homepages[0].buttonLabel}
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="portfolio-block skills">
         <div className="container">
-          <div className="heading">
+          <div style={{"margin-top": "-3rem"}}className="heading">
             <h2>Skills</h2>
           </div>
           <div className="row">
@@ -70,20 +72,13 @@ class IndexPage extends Component {
                 </div>
                 <div className="card-body">
                   <h3 className="card-title">
-                    {this.state.homePageSkills.skill_1["name"]}
+                    {data.homepages[0].skill1Title}
                   </h3>
-                  {this.state.loading ? (
-                    <p className="card-text">
-                      <CircularProgress />
-                    </p>
-                  ) : (
-                    <p className="card-text">
-                      {this.state.homePageSkills.skill_1["description"]}
-                    </p>
-                  )}
+                  <p className="card-text">{data.homepages[0].skill1}</p>
                 </div>
               </div>
             </div>
+
             <div className="col-md-4">
               <div className="card special-skill-item border-0">
                 <div className="card-header bg-transparent border-0">
@@ -91,20 +86,13 @@ class IndexPage extends Component {
                 </div>
                 <div className="card-body">
                   <h3 className="card-title">
-                    {this.state.homePageSkills.skill_2["name"]}
+                    {data.homepages[0].skill2Title}
                   </h3>
-                    {this.state.loading ? (
-                      <p className="card-text">
-                        <CircularProgress />
-                      </p>
-                    ) : (
-                      <p className="card-text">
-                        {this.state.homePageSkills.skill_2["description"]}
-                      </p>
-                    )}
+                  <p className="card-text">{data.homepages[0].skill2}</p>
                 </div>
               </div>
             </div>
+
             <div className="col-md-4">
               <div className="card special-skill-item border-0">
                 <div className="card-header bg-transparent border-0">
@@ -112,61 +100,17 @@ class IndexPage extends Component {
                 </div>
                 <div className="card-body">
                   <h3 className="card-title">
-                    {this.state.homePageSkills.skill_3["name"]}
+                    {data.homepages[0].skill3Title}
                   </h3>
-                    {this.state.loading ? (
-                      <p className="card-text">
-                        <CircularProgress />
-                      </p>
-                    ) : (
-                      <p className="card-text">
-                        {this.state.homePageSkills.skill_3["description"]}
-                      </p>
-                    )}
+                  <p className="card-text">{data.homepages[0].skill3}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-    );
-  }
-
-  render() {
-    if (this.state.loading) {
-      return (
-        <div className="loading-container">
-          <h1>Loading</h1>
-          <span className="loading-item"><CircularProgress /></span>
-        </div>
-      );
-    } else {
-      return (
-        <main className="page landing-page">
-          <section className="portfolio-block block-intro">
-            <div
-              className="avatar"
-              style={{ backgroundImage: `url(${portrait})` }}
-            ></div>
-            <div className="container">
-              <div className="about-me">
-                <p>{parse(this.state.homePageIntro.description)}</p>
-                <Link
-                  className="btn btn-outline-primary"
-                  id="main-projects-btn"
-                  to="/my-projects"
-                >
-                  {this.state.homePageButton.label}
-                </Link>
-              </div>
-            </div>
-          </section>
-
-          {this.createPage()}
-        </main>
-      );
-    }
-  }
+    </main>
+  );
 }
 
 export default IndexPage;
